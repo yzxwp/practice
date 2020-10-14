@@ -1,0 +1,2 @@
+各种python的第三方包的使用练习
+1.cx_oracle:python链接oracle数据库
