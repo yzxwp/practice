@@ -1,4 +1,4 @@
-import os, pybase64
+import pybase64
 
 
 if __name__ == '__main__':
@@ -9,7 +9,7 @@ if __name__ == '__main__':
         # 打印图像转换base64格式的字符串,type结果为<class 'bytes'>
         print(bs64_str,'------------', type(bs64_str))
         # 将base64格式的数据装换为二进制数据
-        # imgdata = base64.b64decode(bs64_str)
+        imgdata = pybase64.b64decode(bs64_str)
         # # 将二进制数据装换为图片
-        # with open("./1.png", "wb") as f2:
-        #     f2.write(imgdata)
+        with open("./1.png", "wb") as f2:
+            f2.write(imgdata)
