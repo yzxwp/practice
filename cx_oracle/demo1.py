@@ -11,7 +11,7 @@
 import cx_Oracle as cx
 def ssh_oracle():
     sql = str("select location_type from tlb_rent_request t where t.rent_request_code='S2009180003'")
-    conn=cx.Connection('NFRZZL/NFRZZL_YWCS@172.26.164.216/DFNFRZZL_YWCS')
+    conn=cx.Connection('NFRZZL/NFRZZL_YWCS@172.16.160.195/YWDFNFRZZL')
     cur=conn.cursor()
     print('我是oracle数据库')
 

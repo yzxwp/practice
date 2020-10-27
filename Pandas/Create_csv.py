@@ -17,4 +17,4 @@ if __name__ == '__main__':
      "category":['100-A','100-B','110-A','110-C','210-A','130-F'],
       "price":[1200,np.nan,2133,5433,np.nan,4432]},
       columns =['id','date','city','category','age','price'])
-    df.to_csv(r'./createCsv.csv',encoding='GBK')
+    df.to_csv(r'./createCsv.csv',mode='a',encoding='GBK')
