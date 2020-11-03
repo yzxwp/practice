@@ -6,7 +6,7 @@ def phone_num():
     '147', '130', '131', '132', '155', '156', '185', '186', '133', '153', '180', '189']
     start = random.choice(num_start)
     end = ''.join(random.sample(string.digits,8))
-    res = start+end+'\n'
+    res = start+end
     return res
 if __name__ == '__main__':
     print(phone_num())
