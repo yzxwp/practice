@@ -1,4 +1,7 @@
 from PIL import Image
+import math
+import operator
+from functools import reduce
 from PIL import ImageChops
 
 
@@ -14,12 +17,7 @@ def compare_images(path_one, path_two, diff_save_location):
     image_two = Image.open(path_two)
     try:
         diff = ImageChops.difference(image_one, image_two)
-
-        if diff.getbbox() is None:
-            # 图片间没有任何不同则直接退出
-            print("【+】We are the same!")
-        else:
-            diff.save(diff_save_location)
+        diff.save(diff_save_location)
     except ValueError as e:
         text = ("表示图片大小和box对应的宽度不一致，参考API说明：Pastes another image into this image."
                 "The box argument is either a 2-tuple giving the upper left corner, a 4-tuple defining the left, upper, "
@@ -28,7 +26,22 @@ def compare_images(path_one, path_two, diff_save_location):
         print("【{0}】{1}".format(e, text))
 
 
+def image_contrast(img1, img2, diff_save_location):
+    image1 = Image.open(img1)
+    image2 = Image.open(img2)
+
+    h1 = image1.histogram()
+    h2 = image2.histogram()
+
+    result = math.sqrt(reduce(operator.add, list(map(lambda a, b: (a - b) ** 2, h1, h2))) / len(h1))
+    if result == 0.0:
+        return "【+】We are the same!"
+    else:
+        return compare_images(img1, img2, diff_save_location)
+
+
 if __name__ == '__main__':
-    compare_images('1.png',
-                   '2.png',
-                   '我们不一样.png')
+    img1 = "1.png"  # 指定图片路径
+    img2 = "2.png"
+    diff_save_location = "我们不一样.gif"
+    result = image_contrast(img1, img2, diff_save_location)

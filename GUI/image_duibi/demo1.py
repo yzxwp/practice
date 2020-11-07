@@ -13,10 +13,10 @@ def image_contrast(img1, img2):
     h2 = image2.histogram()
 
     result = math.sqrt(reduce(operator.add,  list(map(lambda a,b: (a-b)**2, h1, h2)))/len(h1) )
-    return result
+    return type(result)
 
 if __name__ == '__main__':
-    img1 = "./1.gif"  # 指定图片路径
-    img2 = "./33.gif"
+    img1 = "./1.png"  # 指定图片路径
+    img2 = "./1.png"
     result = image_contrast(img1,img2)
     print(result)
