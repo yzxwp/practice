@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1044</width>
+    <height>772</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_all">
+     <item>
+      <widget class="QLabel" name="label_all">
+       <property name="text">
+        <string>测试数据自动生成：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_all">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_all">
+       <property name="text">
+        <string>重新获取全部数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_username">
+     <item>
+      <widget class="QLabel" name="label_username">
+       <property name="text">
+        <string>        用户名：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_username"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_username">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_phone">
+     <item>
+      <widget class="QLabel" name="label_phone">
+       <property name="text">
+        <string>      手机号码：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_phone"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_phone">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_IDCard">
+     <item>
+      <widget class="QLabel" name="label_IDCard">
+       <property name="text">
+        <string>    身份证号码：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_IDCard"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_IDCard">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_shtyzxm">
+     <item>
+      <widget class="QLabel" name="label_shtyzxm">
+       <property name="text">
+        <string>社会统一征信码：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_shtyzxm"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_shtyzxm">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_zzjgdm">
+     <item>
+      <widget class="QLabel" name="label_zzjgdm">
+       <property name="text">
+        <string>  组织机构代码：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_zzjgdm"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_zzjgdm">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_CJH">
+     <item>
+      <widget class="QLabel" name="label_CJH">
+       <property name="text">
+        <string>    车辆车架号：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_CJH"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_CJH">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_zzm">
+     <item>
+      <widget class="QLabel" name="label_zzm">
+       <property name="text">
+        <string>        中征码：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_zzm"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_zzm">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_gonghang">
+     <item>
+      <widget class="QLabel" name="label_gonghang">
+       <property name="text">
+        <string>  工行银行卡号：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_gonghang"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_gonghang">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_nonghang">
+     <item>
+      <widget class="QLabel" name="label_nonghang">
+       <property name="text">
+        <string>  农行银行卡号：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_nonghang"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_nonghang">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_jiaohang">
+     <item>
+      <widget class="QLabel" name="label_jiaohang">
+       <property name="text">
+        <string>  交通银行卡号：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_jiaohang"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_jiaohang">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_zhongguo">
+     <item>
+      <widget class="QLabel" name="label_zhongguo">
+       <property name="text">
+        <string>  中国银行卡号：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_zhongguo"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_zhongguo">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_jianshe">
+     <item>
+      <widget class="QLabel" name="label_jianshe">
+       <property name="text">
+        <string>   建设银行卡号：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_jianshe"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_jianshe">
+       <property name="text">
+        <string>重新获取数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
