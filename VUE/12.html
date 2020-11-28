@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试数据自动生成</title>
+</head>
+<body>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    function ok() {
+        document.getElementById("phone").value = 1231
+    }
+
+    c = document.getElementById("username").value = 1231
+</script>
+<h1>测试数据自动生成</h1>
+<form method="get" id="get_message_form">
+    <table>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="button" id="all_button" value="重新获取全部的测试数据"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                用户姓名:
+            </td>
+            <td>
+                <input id="username" name="username" class="text_input"/>
+            </td>
+            <td>
+                <input type="button" id="usernae_button" value="重新获取数据"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                身份证号码:
+            </td>
+            <td>
+                <input id="id_card" name="id_card" class="text_input"/>
+            </td>
+            <td>
+                <input type="button" id="id_card_button" value="重新获取数据"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                电话号码:
+            </td>
+            <td>
+                <input id="phone" name="phone" class="text_input" value="1414143"  />
+            </td>
+            <td>
+                <input type="button" id="phone_button" value="重新获取数据" onclick=ok() />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                社会统一征信码:
+            </td>
+            <td>
+                <input id="tyshzxm" name="tyshzxm" class="text_input"/>
+            </td>
+            <td>
+                <input type="button" id="tyshzxm_button" value="重新获取数据"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                组织机构代码:
+            </td>
+            <td>
+                <input id="zzjgdm" name="zzjgdm" class="text_input"/>
+            </td>
+            <td>
+                <input type="button" id="zzjgdm_button" value="重新获取数据"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                车辆车架号:
+            </td>
+            <td>
+                <input id="vin" name="vin" class="text_input"/>
+            </td>
+            <td>
+                <input type="button" id="vin_button" value="重新获取数据"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                中征码:
+            </td>
+            <td>
+                <input id="zzm" name="zzm" class="text_input"/>
+            </td>
+            <td>
+                <input type="button" id="zzm" value="重新获取数据"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                工行银行卡号:
+            </td>
+            <td>
+                <input id="gonghang" name="gonghang" class="text_input"/>
+            </td>
+            <td>
+                <input type="button" id="gonghang_button" value="重新获取数据"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                农行银行卡号:
+            </td>
+            <td>
+                <input id="nonghang" name="nonghang" class="text_input"/>
+            </td>
+            <td>
+                <input type="button" id="nonghang_button" value="重新获取数据"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                交行银行卡号:
+            </td>
+            <td>
+                <input id="jiaohang" name="jiaohang" class="text_input"/>
+            </td>
+            <td>
+                <input type="button" id="jiaohang_button" value="重新获取数据"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                中行银行卡号:
+            </td>
+            <td>
+                <input id="zhonghang" name="zhonghang" class="text_input"/>
+            </td>
+            <td>
+                <input type="button" id="zhonghang_button" value="重新获取数据"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                建行银行卡号:
+            </td>
+            <td>
+                <input id="jianshe" name="jianshe" class="text_input"/>
+            </td>
+            <td>
+                <input type="button" id="jianshe_button" value="重新获取数据"/>
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+</body>
+</html>
