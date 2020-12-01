@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .active {
+            border: 10px solid red;
+        }
+    </style>
+</head>
+<body>
+<div id="im">
+    <img v-bind:src="srcimage" alt="213">
+    <img :src="srcimage" :title="imgTitle">
+    <img :src="srcimage" :title="imgTitle" :class="{active:isActive}" @click="toggleActive">
+</div>
+<script>
+    var im = new Vue({
+        el: "#im",
+        data: {
+            srcimage: "../image/00.jpg",
+            imgTitle: "v-bind指令",
+            isActive: false
+        },
+        methods: {
+            toggleActive: function () {
+                this.isActive = !this.isActive;
+            }
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="im">
+    <input type="button" value="显示与隐藏" @click="show">
+    <p v-if="isShow">春江潮水连海平，海上明月共潮生；潋滟随波千万里，何处春江无月明；</p>
+    <p v-if="count1<=5">江流宛转绕芳甸，月照花林皆似霰；</p>
+</div>
+<script>
+    var im = new Vue({
+        el: "#im",
+        data: {
+            isShow: false,
+            count1: 0,
+            max_count: 5
+        },
+        methods: {
+            show: function () {
+                this.isShow = !this.isShow
+                this.count1 += 1
+                console.log(this.isShow+this.count1)
+            }
+        }
+    })
+</script>
+</body>
+</html>

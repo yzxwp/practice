@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="im">
+    <input type="button" value="图片显示与隐藏" @click="show">
+    <img v-show="isShow" src="../image/00.jpg" alt="测试一下下">
+    <img v-show="age>=19" src="../image/01.jpg" alt="测试一下下">
+</div>
+<script>
+    var im = new Vue({
+        el: "#im",
+        data: {
+            isShow: false,
+            age:17
+        },
+        methods: {
+            show: function () {
+                this.isShow = !this.isShow
+                this.age+=this.age
+                console.log(this.isShow)
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUE基础学习</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 官网提供的 axios 在线地址 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="m">
+    <input type="button" value="get" class="get" @click="telll">
+    <input type="text" class="get" :value="tel" @keyup.enter="telll" ><p v-text="tel"></p>
+    <br/>
+    <input type="button" value="post" class="post">
+    <input type="text" id="post_tel">
+</div>
+<script>
+    // document.querySelector('.get').onclick = function () {
+    //     axios.get("http://192.168.0.114/login/tel_1111")
+    //         .then(function (response) {
+    //             var t = new Vue({
+    //                 el: "#get_tel",
+    //                 data: {
+    //                     "tel": response.data.tel
+    //                 }
+    //             })
+    //
+    //         })
+    // }
+    var e = new Vue({
+        el: "#m",
+        data: {
+            "tel": "1"
+        },
+        methods: {
+            telll: function () {
+                var that = this;
+                axios.get("http://192.168.0.114/login/tel_1111")
+                    .then(function (re) {
+                        console.log(re)
+                        that.tel = re.data.tell
+                        // document.getElementById("get_tel").value = this.tel
+                        console.log(that.tel)
+                    }), function (er) {
+
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

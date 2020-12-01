@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VUE基础学习</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--<input type="button" value="测试" >-->
+    <input type="button" value="点击全" v-on:click="dol">
+    </br>
+    <input type="button" value="点击简" @click="dol">
+    <input type="button" value="双击" @dblclick="dol">
+    </br>
+   <h1 v-text="food" @click="foods"></h1>
+</div>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data:{
+            food:"大葱煎鸡蛋"
+        },
+        methods: {
+            dol: function () {
+                alert("测试一下")
+            },
+            foods:function () {
+                console.log(this.food );
+                this.food+="好好吃"
+            }
+        }
+    })
+</script>
+</body>
+</html>

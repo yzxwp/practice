@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VUE基础学习</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="mod">
+        <input type="button" value="测试" @click="way">
+        <input type="text" v-model="message" @keyup.enter="way1">
+        <h1 v-text="message"></h1>
+    </div>
+<script>
+    var app = new Vue({
+        el:"#mod",
+        data:{
+            message:"我喜欢吃苹果"
+        },
+        methods:{
+            way1:function () {
+                alert(this.message)
+            },
+            way:function () {
+                this.message="我更喜欢吃火龙果"
+            }
+        }
+    })
+</script>
+</body>
+</html>
