@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monke命令生成工具</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+        from {
+            display: flex;
+            justify-content: center;
+        }
+
+        select {
+            width: auto;
+            padding: 0 41%;
+            margin: 0;
+        }
+
+        option {
+            text-align: center;
+        }
+
+        span {
+            display: block;
+            text-align: right;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div id="monkey">
+    <from id="from" name="from1">
+        <table id="table">
+            <tr>
+                <td>
+                    <span>测试程序包名：</span>
+                </td>
+                <td>
+                    <!--@click="getpack"-->
+                    <input type="text" v-model="package" id="pacage">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>每个行为的延时(ms)</span>
+                </td>
+                <td>
+                    <input type="text" v-model="times_text" id="times_texts">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>执行次数：</span>
+                </td>
+                <td>
+                    <input type="text" v-model="count" id="count">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>日志级别：</span>
+                </td>
+                <td>
+                    <select id="log" size="1">
+                        <option value="log0">0</option>
+                        <option value="log1">1</option>
+                        <option value="log2" selected="selected">2</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>重现种子seed：</span>
+                </td>
+                <td>
+                    <input type="text" v-model="seed" id="seed" @click="getpack">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>触摸事件touch：</span>
+                </td>
+                <td>
+                    <input type="text" v-model="touch" id="touch" @click="getpack">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>动作事件motion：</span>
+                </td>
+                <td>
+                    <input type="text" v-model="motion" id="motion" @click="getpack">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>轨迹球事件trackball：</span>
+                </td>
+                <td>
+                    <input type="text" v-model="trackball" id="trackball" @click="getpack">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>基本导航事件nav：</span>
+                </td>
+                <td>
+                    <input type="text" v-model="nav" id="nav" @click="getpack">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>主要导航事件najornav：</span>
+                </td>
+                <td>
+                    <input type="text" v-model="najornav" id="najornav" @click="getpack">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>系统关键事件syskeys：</span>
+                </td>
+                <td>
+                    <input type="text" v-model="syskeys" id="syskeys" @click="getpack">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>运行包内activity%appswitch：</span>
+                </td>
+                <td>
+                    <input type="text" value="10%">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>其他类型事件anyevent：</span>
+                </td>
+                <td>
+                    <input type="text" value="10%">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>忽略崩溃：</span>
+                </td>
+                <td>
+                    <input type="radio" name="crashes" value="yes" checked="checked">是
+                    <input type="radio" name="crashes" value="no">否
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>忽略超时：</span>
+                </td>
+                <td>
+                    <input type="radio" name="timeouts" value="yes" checked="checked">是
+                    <input type="radio" name="timeouts" value="no">否
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>忽略应用程序内可能出现的错误：</span>
+                </td>
+                <td>
+                    <input type="radio" name="exceptions " value="yes">是
+                    <input type="radio" name="exceptions " value="no">否
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>当应用程序发生错误时，应用程序停止并保持当前状态：</span>
+                </td>
+                <td>
+                    <input type="radio" name="error " value="yes">是
+                    <input type="radio" name="error " value="no">否
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>指定是否检视并报告应用程序发生崩溃的本地代码：</span>
+                </td>
+                <td>
+                    <input type="radio" name="nativ " value="yes">是
+                    <input type="radio" name="nativ " value="no">否
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>正确日志保存路径：</span>
+                </td>
+                <td>
+                    <input type="text" name="nativ " value="D://sucess_log.txt">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>错误日志保存路径：</span>
+                </td>
+                <td>
+                    <input type="text" name="nativ " value="D://error_log.txt">
+                </td>
+            </tr>
+        </table>
+    </from>
+</div>
+<div>
+    <input type="button" value="生成monkey命令" id="m">
+</div>
+<div>
+    <h3 v-text="monkey_text">1231231</h3>
+</div>
+<div>
+    <button id="copy">复制</button>
+</div>
+
+<script>
+    var package = new Vue({
+        el: "#pacage",
+        data: {
+            package: "请输入包名"
+        }
+        // methods:{
+        //     getpack:function () {
+        //         console.log(this.package)
+        //     }
+        // }
+    });
+    var times_text = new Vue({
+        el: "#times_texts",
+        data: {
+            times_text: "请输入时间"
+        },
+        // methods:{
+        //     getpack:function () {
+        //         console.log(this.times_text)
+        //     }
+        // }
+    })
+    var count = new Vue({
+        el: "#count",
+        data: {
+            count: "请输入执行次数（正整数）"
+        },
+        // methods:{
+        //     getpack:function () {
+        //         console.log(this.count)
+        //     }
+        // }
+    })
+    var log = new Vue({
+        el: "#log",
+        data: {
+            count: "请输入执行次数（正整数）"
+        },
+        // methods:{
+        //     getpack:function () {
+        //         console.log(this.count)
+        //     }
+        // }
+    })
+    var seed = new Vue({
+        el: "#seed",
+        data: {
+            seed: "请输入重复种子（正整数）"
+        },
+        methods: {
+            getpack: function () {
+                console.log(this.seed)
+            }
+        }
+    })
+    var touch = new Vue({
+        el: "#touch",
+        data: {
+            touch: "touch事件"
+        },
+        methods: {
+            getpack: function () {
+                console.log(this.touch)
+            }
+        }
+    })
+    var motion = new Vue({
+        el: "#motion",
+        data: {
+            motion: "motion事件"
+        },
+        methods: {
+            getpack: function () {
+                console.log(this.motion)
+            }
+        }
+    })
+    var trackball = new Vue({
+        el: "#trackball",
+        data: {
+            trackball: "trackball事件"
+        },
+        methods: {
+            getpack: function () {
+                console.log(this.trackball)
+            }
+        }
+    })
+    var nav = new Vue({
+        el: "#nav",
+        data: {
+            nav: "nav事件"
+        },
+        methods: {
+            getpack: function () {
+                console.log(this.nav)
+            }
+        }
+    })
+    var najornav = new Vue({
+        el: "#najornav",
+        data: {
+            najornav: "najornav事件"
+        },
+        methods: {
+            getpack: function () {
+                console.log(this.najornav)
+            }
+        }
+    })
+    var syskeys = new Vue({
+        el: "#syskeys",
+        data: {
+            syskeys: "nsyskeys事件"
+        },
+        methods: {
+            getpack: function () {
+                console.log(this.syskeys)
+            }
+        }
+    })
+</script>
+</body>
+</html>
