@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="copy">
+<input type="text" v-model="text" class="copy">
+<input type="button" class="copy" value="复制" @click="copy1">
+    </div>
+<script>
+    var co = new Vue({
+        el: "#copy",
+        data: {
+            text: "copy is easy"
+        },
+        methods: {
+            copy1: function () {
+                var input1 = document.createElement("input");   // 直接构建input
+                input1.value = this.text;  // 设置内容
+                document.body.appendChild(input1)
+                input1.select();   // 选择实例内容
+                document.execCommand("Copy");   // 执行复制
+                console.log(input1.value)
+                document.body.removeChild(input1); // 删除临时实例
+            }
+        }
+    })
+</script>
+</body>
+</html>
+    <!--//    methods: {-->
+    <!--//  copyShaneUrl(shareLink){-->
+    <!--//    var input = document.createElement("input");   // 直接构建input-->
+    <!--//    input.value = shareLink;  // 设置内容-->
+    <!--//    document.body.appendChild(_input1);    // 添加临时实例-->
+    <!--//    input.select();   // 选择实例内容-->
+    <!--//    document.execCommand("Copy");   // 执行复制-->
+    <!--//    document.body.removeChild(_input); // 删除临时实例-->
+    <!--//  }-->
+    <!--// }-->
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--左边是一个input输入框，要求只读，而且里面的内容通过url?后面的code传入-->
+<input type="text" value="AJS4EFS" id="textAreas"/>
+<!--右边是一个按钮-->
+<input type="button" class="cuteShareBtn" id="copy" onclick="co()"  value="复制">
+<script>
+    function co() {
+        //复制按钮事件绑定
+        $("#copy").on("tap", function () {
+            //获取input对象
+            var obj = document.getElementById("textAreas");
+            //选择当前对象
+            obj.select();
+            try {
+                //进行复制到剪切板
+                if (document.execCommand("Copy", "false", null)) {
+                    //如果复制成功
+                    alert("复制成功！");
+                } else {
+                    //如果复制失败
+                    alert("复制失败！");
+                }
+            } catch (err) {
+                //如果报错
+                alert("复制错误！")
+            }
+        })
+    }
+
+
+</script>
+
+
+</body>
+</html>

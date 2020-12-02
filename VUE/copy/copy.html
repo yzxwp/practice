@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>复制测试</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--<script src="https://cdn.statically.io/gh/zenorocha/clipboard.js/v2.0.6/dist/clipboard.min.js"></script>-->
+    <!--<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+</head>
+<body>
+<div id="co">
+<span class="NetbarNumber">{{item.NetbarNumber}}</span>
+<button ref="copy" class="lr back-confirm btn" :data-clipboard-text="item.NetbarNumber" @click="copy" id="copy_text">
+    复制key
+</button>
+</div>
+<script>
+
+    var co = new Vue({
+        el: "#co",
+        data: {
+            item: {
+                NetbarNumber: "12412412"
+            }
+        },
+        methods: {
+            copy: function () {
+                var _this = this;
+                clipboard.on('success', e => {
+                    alert("dd")
+// 释放内存
+                    clipboard.destroy()
+                })
+                clipboard.on('error', e => {
+// 不支持复制
+                    Message({
+                        message: '该浏览器不支持自动复制',
+                        type: 'warning'
+                    });
+// 释放内存
+                    clipboard.destroy()
+                })
+            }
+        }
+    })
+
+</script>
+
+
+</body>
+</html>
