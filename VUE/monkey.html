@@ -19,7 +19,6 @@
             display: block;
             text-align: right;
         }
-
     </style>
 </head>
 <body>
@@ -68,7 +67,7 @@
                     <span>重现种子seed：</span>
                 </td>
                 <td>
-                    <input type="text" v-model="seed" id="seed" @click="getpack">
+                    <input type="text" v-model="seed" id="seed">
                 </td>
             </tr>
             <tr>
@@ -76,7 +75,7 @@
                     <span>触摸事件touch：</span>
                 </td>
                 <td>
-                    <input type="text" v-model="touch" id="touch" @click="getpack">
+                    <input type="text" v-model="touch" id="touch">
                 </td>
             </tr>
             <tr>
@@ -84,7 +83,7 @@
                     <span>动作事件motion：</span>
                 </td>
                 <td>
-                    <input type="text" v-model="motion" id="motion" @click="getpack">
+                    <input type="text" v-model="motion" id="motion">
                 </td>
             </tr>
             <tr>
@@ -92,7 +91,7 @@
                     <span>轨迹球事件trackball：</span>
                 </td>
                 <td>
-                    <input type="text" v-model="trackball" id="trackball" @click="getpack">
+                    <input type="text" v-model="trackball" id="trackball">
                 </td>
             </tr>
             <tr>
@@ -100,7 +99,7 @@
                     <span>基本导航事件nav：</span>
                 </td>
                 <td>
-                    <input type="text" v-model="nav" id="nav" @click="getpack">
+                    <input type="text" v-model="nav" id="nav">
                 </td>
             </tr>
             <tr>
@@ -108,7 +107,7 @@
                     <span>主要导航事件najornav：</span>
                 </td>
                 <td>
-                    <input type="text" v-model="najornav" id="najornav" @click="getpack">
+                    <input type="text" v-model="najornav" id="najornav">
                 </td>
             </tr>
             <tr>
@@ -116,7 +115,7 @@
                     <span>系统关键事件syskeys：</span>
                 </td>
                 <td>
-                    <input type="text" v-model="syskeys" id="syskeys" @click="getpack">
+                    <input type="text" v-model="syskeys" id="syskeys">
                 </td>
             </tr>
             <tr>
@@ -124,7 +123,7 @@
                     <span>运行包内activity%appswitch：</span>
                 </td>
                 <td>
-                    <input type="text" v-model="appswitch" id="appswitch" @click="getpack">
+                    <input type="text" v-model="appswitch" id="appswitch">
                 </td>
             </tr>
             <tr>
@@ -132,7 +131,7 @@
                     <span>其他类型事件anyevent：</span>
                 </td>
                 <td>
-                    <input type="text" v-model="anyevent" id="anyevent" @click="getpack">
+                    <input type="text" v-model="anyevent" id="anyevent">
                 </td>
             </tr>
             <tr>
@@ -185,7 +184,7 @@
                     <span>正确日志保存路径：</span>
                 </td>
                 <td>
-                    <input type="text" name="nativ " v-model="success" id="success" @click="getpack">
+                    <input type="text" name="nativ " v-model="success" id="success">
                 </td>
             </tr>
             <tr>
@@ -193,14 +192,14 @@
                     <span>错误日志保存路径：</span>
                 </td>
                 <td>
-                    <input type="text" name="nativ " v-model="error" id="error" @click="getpack">
+                    <input type="text" name="nativ " v-model="error" id="error">
                 </td>
-                <!--<td>-->
-                <!--<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>-->
-                <!--</td>-->
-                <!--<td>-->
-                <!--<input type="button" value="生成monkey命令" class="get_monkey" @click="getpack">-->
-                <!--</td>-->
+                <td>
+                    <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+                </td>
+                <td>
+                    <input type="button" value="生成monkey命令" class="get_monkey" @click="getpack">
+                </td>
             </tr>
         </table>
     </from>
@@ -208,7 +207,7 @@
         <input type="text" v-model="monkey_text" id="test" style="width: 99%">
     </div>
     <div id="tdiv">
-        <button id="copy">复制</button>
+        <button id="copy" @click="copy">复制</button>
     </div>
 </div>
 
@@ -217,7 +216,24 @@
     var fdiv = new Vue({
         el: "#fdiv",
         data: {
-            monkey_text: "adb shell monkey -p",
+            head: "adb shell monkey ",
+            base: {
+                b_package: "",
+                b_times_text: "",
+                b_count: "",
+                b_seed: "",
+                b_touch: "",
+                b_motion: "",
+                b_trackball: "",
+                b_nav: "",
+                b_najornav: "",
+                b_syskeys: "",
+                b_appswitch: "",
+                b_anyevent: "",
+                b_success: "",
+                b_error: ""
+            },
+            monkey_text: "",
             package: "请输入包名",
             times_text: "请输入时间",
             count: "请输入执行次数（正整数）",
@@ -227,197 +243,118 @@
             trackball: "trackball事件",
             nav: "nav事件",
             najornav: "najornav事件",
-            syskeys: "nsyskeys事件",
+            syskeys: "syskeys事件",
             appswitch: "appswitch事件",
             anyevent: "anyevent事件",
             success: "D://sucess_log.txt",
             error: "D://error_log.txt"
         },
-        methods:{
-            getpack:function () {
-                this.monkey_text=this.monkey_text+" --throttle "+this.package+" "+this.times_text+" "+this.count
+        methods: {
+            getpack: function () {
+                if (this.package != "请输入包名") {
+                    this.base["b_package"] = " -p " + this.package
+                } else {
+                    alert("请输入包名，否则生成的monkey命令没有任何意义")
+                }
+                if (this.times_text != "请输入时间") {
+                    var j = parseInt(this.times_text)
+                    if (j > 0) {
+                        this.base["b_times_text"] = "  --throttle  " + j
+                    }
+                }
+                if (this.count != "请输入执行次数（正整数）") {
+                    var j = parseInt(this.count)
+                    if (j > 0) {
+                        // var count=this.count.split('.')[0]
+                        this.base["b_count"] = " " + j
+                    } else {
+                        alert("请输入执行次数（正整数），否则生成的monkey命令没有任何意义")
+                    }
+                } else {
+                    alert("请输入执行次数（正整数），否则生成的monkey命令没有任何意义")
+                }
+
+                if (this.seed != "请输入重复种子（正整数）") {
+                    var j = parseInt(this.seed)
+                    if (j > 0) {
+                        this.base["b_seed"] = " -s " + j
+                    }
+                }
+                if (this.touch != "touch事件）") {
+                    var j = parseInt(this.touch)
+                    if (j > 0 && j <= 100) {
+                        this.base["b_touch"] = " --pct-touch " + j
+                    }
+                }
+                if (this.motion != "motion事件）") {
+                    var j = parseInt(this.motion)
+                    if (j > 0 && j <= 100) {
+                        this.base["b_motion"] = " --pct-motion " + j
+                    }
+                }
+                if (this.trackball != "trackball事件）") {
+                    var j = parseInt(this.trackball)
+                    if (j > 0 && j <= 100) {
+                        this.base["b_trackball"] = " --pct-trackball " + j
+                    }
+                }
+                if (this.nav != "nav事件）") {
+                    var j = parseInt(this.nav)
+                    if (j > 0 && j <= 100) {
+                        this.base["b_nav"] = " --pct-nav " + j
+                    }
+                }
+                if (this.najornav != "najornav事件）") {
+                    var j = parseInt(this.najornav)
+                    if (j > 0 && j <= 100) {
+                        this.base["b_najornav"] = " --pct-majornav " + j
+                    }
+                }
+                if (this.syskeys != "syskeys事件）") {
+                    var j = parseInt(this.syskeys)
+                    if (j > 0 && j <= 100) {
+                        this.base["b_syskeys"] = " --pct-syskeys " + j
+                    }
+                }
+                if (this.appswitch != "appswitch事件）") {
+                    var j = parseInt(this.appswitch)
+                    if (j > 0 && j <= 100) {
+                        this.base["b_appswitch"] = " --pct-appswitch " + j
+                    }
+                }
+                if (this.anyevent != "anyevent事件）") {
+                    var j = parseInt(this.anyevent)
+                    if (j > 0 && j <= 100) {
+                        this.base["b_anyevent"] = " --pct-anyevent " + j
+                    }
+                }
+                if (this.success != "") {
+                    this.base["b_success"] = " > " + this.success
+                }
+                if (this.error != "") {
+                    this.base["b_error"] = " > " + this.error
+                }
+
+                this.monkey_text = this.head + this.base["b_times_text"] + this.base["b_package"] + " " + this.base["b_count"] +
+                    this.base["b_seed"] + this.base["b_touch"] + this.base["b_motion"] + this.base["b_trackball"] + this.base["b_nav"]
+                    + this.base["b_najornav"] + this.base["b_syskeys"] + this.base["b_appswitch"] + this.base["b_anyevent"]
+                    + this.base["b_success"] + this.base["b_error"]
+
+                console.log(this.monkey_text)
+            },
+
+            copy: function () {
+                var input1 = document.createElement("input");   // 直接构建input
+                input1.value = this.monkey_text;  // 设置内容
+                document.body.appendChild(input1)
+                input1.select();   // 选择实例内容
+                document.execCommand("Copy");   // 执行复制
+                console.log(input1.value)
+                document.body.removeChild(input1); // 删除临时实例
                 console.log(this.monkey_text)
             }
         }
     })
-    // var package = new Vue({
-    //     el: "#pacage",
-    //     data: {
-    //         package: "请输入包名"
-    //     }
-    //     // methods:{
-    //     //     getpack:function () {
-    //     //         console.log(this.package)
-    //     //     }
-    //     // }
-    // });
-    // var times_text = new Vue({
-    //     el: "#times_texts",
-    //     data: {
-    //         times_text: "请输入时间"
-    //     },
-    //     // methods:{
-    //     //     getpack:function () {
-    //     //         console.log(this.times_text)
-    //     //     }
-    //     // }
-    // });
-    // var count = new Vue({
-    //     el: "#count",
-    //     data: {
-    //         count: "请输入执行次数（正整数）"
-    //     },
-    //     // methods:{
-    //     //     getpack:function () {
-    //     //         console.log(this.count)
-    //     //     }
-    //     // }
-    // });
-    // var log = new Vue({
-    //     el: "#log",
-    //     data: {
-    //         count: "请输入执行次数（正整数）"
-    //     },
-    //     // methods:{
-    //     //     getpack:function () {
-    //     //         console.log(this.count)
-    //     //     }
-    //     // }
-    // });
-    // var seed = new Vue({
-    //     el: "#seed",
-    //     data: {
-    //         seed: "请输入重复种子（正整数）"
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             console.log(this.seed)
-    //         }
-    //     }
-    // });
-    // var touch = new Vue({
-    //     el: "#touch",
-    //     data: {
-    //         touch: "touch事件"
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             console.log(this.touch)
-    //         }
-    //     }
-    // });
-    // var motion = new Vue({
-    //     el: "#motion",
-    //     data: {
-    //         motion: "motion事件"
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             console.log(this.motion)
-    //         }
-    //     }
-    // });
-    // var trackball = new Vue({
-    //     el: "#trackball",
-    //     data: {
-    //         trackball: "trackball事件"
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             console.log(this.trackball)
-    //         }
-    //     }
-    // });
-    // var nav = new Vue({
-    //     el: "#nav",
-    //     data: {
-    //         nav: "nav事件"
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             console.log(this.nav)
-    //         }
-    //     }
-    // });
-    // var najornav = new Vue({
-    //     el: "#najornav",
-    //     data: {
-    //         najornav: "najornav事件"
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             console.log(this.najornav)
-    //         }
-    //     }
-    // });
-    // var syskeys = new Vue({
-    //     el: "#syskeys",
-    //     data: {
-    //         syskeys: "nsyskeys事件"
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             console.log(this.syskeys)
-    //         }
-    //     }
-    // });
-    // var appswitch = new Vue({
-    //     el: "#appswitch",
-    //     data: {
-    //         appswitch: "appswitch事件"
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             console.log(this.appswitch)
-    //         }
-    //     }
-    // });
-    // var anyevent = new Vue({
-    //     el: "#anyevent",
-    //     data: {
-    //         anyevent: "anyevent事件"
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             console.log(this.anyevent)
-    //         }
-    //     }
-    // });
-    // var success = new Vue({
-    //     el: "#success",
-    //     data: {
-    //         success: "D://sucess_log.txt"
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             console.log(this.success)
-    //         }
-    //     }
-    // });
-    // var error = new Vue({
-    //     el: "#error",
-    //     data: {
-    //         error: "D://error_log.txt"
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             console.log(this.error)
-    //         }
-    //     }
-    // });
-    // var monkey_div = new Vue({
-    //     el: "#monkey_div",
-    //     data: {
-    //         monkey_text: "adb shell monkey -p",
-    //         package_text: this.package,
-    //     },
-    //     methods: {
-    //         getpack: function () {
-    //             this.monkey_text = this.monkey_text + this.package_text
-    //             console.log(this.monkey_text)
-    //         }
-    //     }
-    // });
 </script>
 </body>
 </html>
