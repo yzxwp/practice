@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function copyText() {
+            var input = document.createElement("input");   // js创建一个input输入框
+            input.value = this.text;  // 将需要复制的文本赋值到创建的input输入框中
+            document.body.appendChild(input);    // 将输入框暂时创建到实例里面
+            input.select();   // 选中输入框中的内容
+            text = document.execCommand("Copy");   // 执行复制操作
+            // document.body.removeChild(input); // 最后删除实例中临时创建的input输入框，完成复制操作
+            console.log("text")
+        }
+
+    </script>
+</head>
+<body>
+<!--<input type="text" onclick="copyText()" value="测试一下">-->
+<!--<input type="button" id="Copy" value="复制">-->
+<input type="button" class="btn" value="阿萨德">
+    <script>
+        var clipboard = new Clipboard('.btn');
+
+        clipboard.on('success', function (e) {
+            console.info('Action:', e.action);
+            console.info('Text:', e.text);
+            console.info('Trigger:', e.trigger);
+
+            e.clearSelection();
+        });
+
+        clipboard.on('error', function (e) {
+            console.error('Action:', e.action);
+            console.error('Trigger:', e.trigger);
+        });</script>
+</body>
+</html>

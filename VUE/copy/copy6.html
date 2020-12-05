@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+
+<textarea id="bar" cols="62" rows="5" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"> 代码改变世界 </textarea>
+<!-- Trigger -->
+<button id="btn" data-clipboard-action="copy" data-clipboard-target="#bar">
+    Cut to clipboard
+</button>
+<script>
+    var clipboard = new Clipboard('#btn', {
+        target: clipboard.onclick('success', function (e) {
+            console.info('Action:', e.action);
+            console.info('Text:', e.text);
+            console.info('Trigger:', e.trigger);
+            alert("复制成功");
+            e.clearSelection();
+        }),
+        target:clipboard.onclick('error', function (e) {
+            console.error('Action:', e.action);
+            console.error('Trigger:', e.trigger);
+        })
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="copy_wx">
+    <span>点击复制</span>
+    <input id="id_text" type="text" value="复制的内容"/>
+</div>
+<script>
+    $('#copy_wx').click(function () {
+        var element = $('#id_text')
+        element.focus();
+        element.setSelectionRange(0, element.val().length);
+        document.execCommand('copy');//拷贝当前选中内容到剪贴板
+        element.blur();
+    })
+
+</script>
+</body>
+</html>

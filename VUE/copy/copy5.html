@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<li v-for="(item, index) in meetingList">
+    <button @click="copyShaneUrl(item.shareUrl)" id="copy">复制分享链接</button>
+</li>
+<script>
+    var i = new Vue({
+        el: "#copy",
+        data: {
+            meetingList: ["阿萨德", "UI谷歌"]
+        },
+        methods: {
+            copy: function () {
+                copyShaneUrl(shareLink)
+                {
+                    var input = document.createElement("input");   // 直接构建input
+                    input.value = shareLink;  // 设置内容
+                    document.body.appendChild(_input);    // 添加临时实例
+                    input.select();   // 选择实例内容
+                    document.execCommand("Copy");   // 执行复制
+                    document.body.removeChild(_input); // 删除临时实例
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
