@@ -1,0 +1,25 @@
+type = raw events
+count = 1
+speed = 1.0
+
+start data >>
+#打开app的包名，启动的Activity
+LaunchActivity(com.android.calculator2,com.android.calculator2.Calculator)
+#休眠500ms
+UserWait(500)
+#点击计算机按钮1
+Tap(105,989,1000)
+UserWait(500)
+
+#点击计算机按钮+号
+Tap(635,850,1000)
+UserWait(500)
+
+#点击计算机按钮9
+Tap(445,731,1000)
+UserWait(500)
+
+#点击计算机按钮=号
+Tap(617,1071,1000)
+UserWait(500)
+
