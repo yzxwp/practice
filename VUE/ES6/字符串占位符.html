@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>字符串占位符</title>
+</head>
+<body>
+<div id="test">
+    <h1 @click="con">{{tmessage}}</h1>
+
+</div>
+
+<script>
+    const name=`Dog`
+    const test = new Vue({
+        el: "#test",
+        data: {
+            tmessage: `Hellow
+            world
+            ! ${name}`
+        },
+        methods: {
+            con: function () {
+                console.log(this.tmessage)
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
