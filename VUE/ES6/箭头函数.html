@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>箭头函数</title>
+</head>
+<body>
+<div id="test">
+     <h1 @click="danyi">单一参数</h1>
+    </br>
+    <h1 @click="many">多个参数</h1>
+    </br>
+    <h1 @click="meiyou">没有参数</h1>
+    </br>
+    <h1 @click="duotiao">多条语句</h1>
+    </br>
+    <h1 @click="fanhui">返回对象</h1>
+    </br>
+</div>
+<script>
+    // const test=new Vue({
+    //     methods:{
+    //
+    //     }
+    // })
+    let danyi=msg=>msg;
+    console.log(danyi("你好"))
+    let many=(name,msg)=>`${name},${msg}`
+    console.log(many('yzxing','hello'))
+    let meiyou=()=>"你好呀，没有参数呀"
+    console.log(meiyou())
+    let duotiao=(name,age,sex)=>{
+        let person={
+            "name":name,
+            "age":age,
+            "sex":sex
+        }
+        return `${person.name} + ${person.age} + ${person.sex}`
+    }
+    console.log(duotiao('yzxing','26','M'))
+    let fanhui=(name,age)=>({"name":name,"age":age})
+    console.log(fanhui("yzxing你呀！","已经26岁呀"))
+</script>
+</body>
+</html>
