@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>解析</title>
+</head>
+<body>
+<div id="test">
+     <h1 @click="con">{{tmessage}}</h1>
+</div>
+<script>
+    const test = new Vue({
+        el: "#test",
+        data: {
+            tmessage: `Hellow
+            world
+            !`
+        },
+        methods: {
+            con: function () {
+                let person=["yzxing",["1","26"],"M"]
+                let [name,[,age],sex]=person
+                console.log(name)
+                console.log(age)
+                console.log(sex)
+                console.log(this.tmessage)
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

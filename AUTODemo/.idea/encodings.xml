@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$/monkey/monkey.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/python_requests/postman工具/phone.csv" charset="GBK" />
+  </component>
+</project>

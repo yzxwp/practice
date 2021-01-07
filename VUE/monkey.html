@@ -19,6 +19,11 @@
             display: block;
             text-align: right;
         }
+        #in{
+            display: flex;
+            justify-content: center;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -50,18 +55,18 @@
                     <input type="text" v-model="count" id="count">
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <span>日志级别：</span>
-                </td>
-                <td>
-                    <select id="log" size="1">
-                        <option value="log0">0</option>
-                        <option value="log1">1</option>
-                        <option value="log2" selected="selected">2</option>
-                    </select>
-                </td>
-            </tr>
+            <!--<tr>-->
+                <!--<td>-->
+                    <!--<span>日志级别：</span>-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--<select id="log" size="1">-->
+                        <!--<option value="log0">0</option>-->
+                        <!--<option value="log1">1</option>-->
+                        <!--<option value="log2" selected="selected">2</option>-->
+                    <!--</select>-->
+                <!--</td>-->
+            <!--</tr>-->
             <tr>
                 <td>
                     <span>重现种子seed：</span>
@@ -140,7 +145,7 @@
                 </td>
                 <td>
                     <input type="radio" name="crashes" value="yes" checked="checked">是
-                    <input type="radio" name="crashes" value="no">否
+                    <!--<input type="radio" name="crashes" value="no">否-->
                 </td>
             </tr>
             <tr>
@@ -149,36 +154,36 @@
                 </td>
                 <td>
                     <input type="radio" name="timeouts" value="yes" checked="checked">是
-                    <input type="radio" name="timeouts" value="no">否
+                    <!--<input type="radio" name="timeouts" value="no">否-->
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <span>忽略应用程序内可能出现的错误：</span>
-                </td>
-                <td>
-                    <input type="radio" name="exceptions " value="yes">是
-                    <input type="radio" name="exceptions " value="no" checked="checked">否
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span>当应用程序发生错误时，应用程序停止并保持当前状态：</span>
-                </td>
-                <td>
-                    <input type="radio" name="error " value="yes">是
-                    <input type="radio" name="error " value="no" checked="checked">否
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span>指定是否检视并报告应用程序发生崩溃的本地代码：</span>
-                </td>
-                <td>
-                    <input type="radio" name="nativ " value="yes">是
-                    <input type="radio" name="nativ " value="no" checked="checked">否
-                </td>
-            </tr>
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<span>忽略应用程序内可能出现的错误：</span>-->
+            <!--</td>-->
+            <!--<td>-->
+            <!--<input type="radio" name="exceptions " value="yes">是-->
+            <!--<input type="radio" name="exceptions " value="no" checked="checked">否-->
+            <!--</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<span>当应用程序发生错误时，应用程序停止并保持当前状态：</span>-->
+            <!--</td>-->
+            <!--<td>-->
+            <!--<input type="radio" name="error " value="yes">是-->
+            <!--<input type="radio" name="error " value="no" checked="checked">否-->
+            <!--</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<span>指定是否检视并报告应用程序发生崩溃的本地代码：</span>-->
+            <!--</td>-->
+            <!--<td>-->
+            <!--<input type="radio" name="nativ " value="yes">是-->
+            <!--<input type="radio" name="nativ " value="no" checked="checked">否-->
+            <!--</td>-->
+            <!--</tr>-->
             <tr>
                 <td>
                     <span>正确日志保存路径：</span>
@@ -206,9 +211,19 @@
     <div id="sdiv">
         <input type="text" v-model="monkey_text" id="test" style="width: 99%">
     </div>
+    <div id="ediv">
+        <h1>
+            {{monkey_text}}
+        </h1>
+    </div>
     <div id="tdiv">
         <button id="copy" @click="copy">复制</button>
     </div>
+</div>
+<div id="in">
+    <a href="index1.html">
+   <h3>返回首页</h3>
+</a>
 </div>
 
 
@@ -218,6 +233,9 @@
         data: {
             head: "adb shell monkey ",
             base: {
+                b_crashes: " --ignore-crashes ",
+                b_timeouts: " --ignore-timeouts ",
+                b_view: " -v -v -v ",
                 b_package: "",
                 b_times_text: "",
                 b_count: "",
@@ -246,8 +264,8 @@
             syskeys: "syskeys事件",
             appswitch: "appswitch事件",
             anyevent: "anyevent事件",
-            success: "D://sucess_log.txt",
-            error: "D://error_log.txt"
+            success: "D:/sucess_log.txt",
+            error: "D:/error_log.txt"
         },
         methods: {
             getpack: function () {
@@ -255,6 +273,7 @@
                     this.base["b_package"] = " -p " + this.package
                 } else {
                     alert("请输入包名，否则生成的monkey命令没有任何意义")
+                    this.monkey_text = "请输入包名，否则生成的monkey命令没有任何意义"
                 }
                 if (this.times_text != "请输入时间") {
                     var j = parseInt(this.times_text)
@@ -269,9 +288,11 @@
                         this.base["b_count"] = " " + j
                     } else {
                         alert("请输入执行次数（正整数），否则生成的monkey命令没有任何意义")
+                        this.monkey_text = "请输入执行次数（正整数），否则生成的monkey命令没有任何意义"
                     }
                 } else {
                     alert("请输入执行次数（正整数），否则生成的monkey命令没有任何意义")
+                    this.monkey_text = "请输入执行次数（正整数），否则生成的monkey命令没有任何意义"
                 }
 
                 if (this.seed != "请输入重复种子（正整数）") {
@@ -329,18 +350,20 @@
                     }
                 }
                 if (this.success != "") {
-                    this.base["b_success"] = " > " + this.success
+                    this.base["b_success"] = " 1> " + this.success
                 }
                 if (this.error != "") {
-                    this.base["b_error"] = " > " + this.error
+                    this.base["b_error"] = " 2> " + this.error
                 }
-
-                this.monkey_text = this.head + this.base["b_times_text"] + this.base["b_package"] + " " + this.base["b_count"] +
-                    this.base["b_seed"] + this.base["b_touch"] + this.base["b_motion"] + this.base["b_trackball"] + this.base["b_nav"]
-                    + this.base["b_najornav"] + this.base["b_syskeys"] + this.base["b_appswitch"] + this.base["b_anyevent"]
-                    + this.base["b_success"] + this.base["b_error"]
-
-                console.log(this.monkey_text)
+                if (this.monkey_text != "") {
+                    this.monkey_text = ""
+                } else {
+                    this.monkey_text = this.head + this.base["b_times_text"] + this.base["b_crashes"] + this.base["b_timeouts"] + this.base["b_package"] + " " + this.base["b_count"] +
+                        this.base["b_seed"] + this.base["b_touch"] + this.base["b_motion"] + this.base["b_trackball"] + this.base["b_nav"]
+                        + this.base["b_najornav"] + this.base["b_syskeys"] + this.base["b_appswitch"] + this.base["b_anyevent"] + this.base["b_view"]
+                        + this.base["b_success"] + this.base["b_error"]
+                }
+                // console.log(this.monkey_text)
             },
 
             copy: function () {
@@ -351,7 +374,7 @@
                 document.execCommand("Copy");   // 执行复制
                 console.log(input1.value)
                 document.body.removeChild(input1); // 删除临时实例
-                console.log(this.monkey_text)
+                // console.log(this.monkey_text)
             }
         }
     })

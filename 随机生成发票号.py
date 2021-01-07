@@ -3,7 +3,7 @@
 #博客：https://blog.csdn.net/sinat_37967865
 #文件：pymysqlModel.py
 #日期：2018-10-22
-#备注：pip install pymysql  pymysql是Python中操作MySQL的模块   F:\python_env\PaChong_env
+#备注：pip install pymysq  pymysql是Python中操作MySQL的模块   F:\python_env\PaChong_env
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 import xlrd

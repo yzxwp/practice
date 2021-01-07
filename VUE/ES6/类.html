@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class person{
+        constructor(name,age,sex){
+            this.name=name;
+            this.age=age;
+            this.sex=sex;
+        }
+        showPerson(){
+            console.log(`${this.name} ${this.age} ${this.sex}`)
+        }
+    };
+    let person1=new person('yzxing','26','M');
+    person1.showPerson()
+</script>
+<script>
+    let Person= class{
+        constructor(name,age,sex){
+            this.name=name;
+            this.age=age;
+            this.sex=sex;
+        }
+        showPerson(){
+            console.log(`${this.name} ${this.age} ${this.sex}`)
+        }
+    };
+    let person2=new Person('yzxing','27','M');
+    person2.showPerson()
+</script>
+<script>
+    let Person3= new class{
+        constructor(name,age,sex){
+            this.name=name;
+            this.age=age;
+            this.sex=sex;
+        }
+        showPerson(){
+            console.log(`${this.name} ${this.age} ${this.sex}`)
+        }
+    }('yzxing','28','M');
+    Person3.showPerson()
+</script>
+<script>
+    class person4{
+        constructor(name,age,sex){
+            this.name=name;
+            this.age=age;
+            this.sex=sex;
+        }
+        showPerson(){
+            console.log(`${this.name} ${this.age} ${this.sex}`)
+        }
+        get name(){
+            return this._name
+        }
+        set name(value){
+            this._name=value;
+        }
+    };
+    let persontest=new person4("yzxing",'29','M');
+    persontest.showPerson();
+    console.log(persontest.name)
+    persontest.name="wangping"
+    console.log(persontest.name)
+    persontest.showPerson()
+</script>
+</body>
+</html>
