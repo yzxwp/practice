@@ -1,0 +1,19 @@
+# shape告诉我们有多少行多少列
+    print(data.shape)
+    # 查看有列
+    print(data.columns)
+    # 查看前几条数据
+    print(data.head(7))
+    # 查看末尾几行
+    print(data.tail(3))
+
+     # 对于没有头的文件，将header设置成none，会自动生成头
+    data = pd.read_csv("./1.csv", encoding="gbk", header=None)
+    # 设置columns
+    data.columns = [u"Bug编号", u"所属产品", u"所属模块", u"所属项目", u"相关需求", u"相关任务", u"Bug标题", u"关键词", u"严重程度", u"优先级", u"Bug类型",
+                    u"操作系统", u"浏览器", u"重现步骤", u"Bug状态", u"截止日期", u"激活次数", u"是否确认", u"抄送给", u"由谁创建", u"创建日期", u"影响版本",
+                    u"指派给", u"指派日期", u"解决者", u"解决方案", u"解决版本", u"解决日期", u"由谁关闭", u"关闭日期", u"重复ID", u"相关Bug", u"相关用例",
+                    u"最后修改者", u"修改日期", u"附件", u"附件"]
+    data.set_index(u"Bug编号",inplace=True)
+
+    

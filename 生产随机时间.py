@@ -1,4 +1,4 @@
-# encoding: utf-8
+g# encoding: utf-8
 import time
 import random
 def get_time():

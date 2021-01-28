@@ -54,7 +54,7 @@ class Application(Frame):
 
     def testTag(self):
         self.w1.delete(1.0, END)
-        self.w1.insert(INSERT, 'good good study, day day up!\n百度搜索')
+        self.w1.insert(INSERT, 'good good study, day04 day04 up!\n百度搜索')
         self.w1.tag_add('good', 1.0, 1.9)
         self.w1.tag_config('good', background='red',foreground='yellow')
         self.w1.tag_add('baidu', 2.0, 2.2)
