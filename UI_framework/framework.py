@@ -11,6 +11,10 @@ from UI_framework.Logger import Logger
 
 
 class BlueRose(object):
+    """
+        对selenium框架的二次开发，更能体现
+    """
+
     def logging(func):
         logger = Logger('blueRose.log', level='debug').logger
 
@@ -23,10 +27,7 @@ class BlueRose(object):
 
         return wrapper
 
-    """
-        BlueRose framework are committed to a simpler automated testing,based on the original selenium.
-    """
-
+    #
     def __init__(self, browser='firefox', isMultitask=False):
         self.logger = Logger('blueRose.log', level='debug').logger
         self.seconds = 30
@@ -37,89 +38,88 @@ class BlueRose(object):
         else:
             self.initDriver(browser)
 
-    def initDriver(self, browser='firefox'):
+    def initDriver(self, browser='firefox', wait_time=5):
         """
-        Run class initialization method, the default is proper
-        to drive the Firefox browser,. Of course, you can also
-        pass parameter for other browser, such as Chrome browser for the "Chrome",
-        the Internet Explorer browser for "internet explorer" or "ie".
+        浏览器：默认为火狐浏览器，但是可以选择谷歌或者IE浏览器；
+                打开浏览器的实践默认为5s，可修改；
+                当输入的游览器不在"firefox""Firefox""chrome""Chrome""ie""IE"中时，断言Flase
         """
         try:
-            if browser == "firefox":
+            if browser == "firefox" or browser == "Firefox":
                 self.driver = webdriver.Firefox()
-            elif browser == "chrome":
+            elif browser == "chrome" or browser == "Chrome":
                 self.driver = webdriver.Chrome()
-            elif browser == "ie":
+            elif browser == "ie" or browser == "IE":
                 self.driver = webdriver.Ie()
-            self.driver.implicitly_wait(5)
+            self.driver.implicitly_wait(wait_time)
         except Exception:
             self.logger.error("Not found this browser,You can enter 'firefox', 'chrome', 'ie'.")
             assert False
 
-    def initMultitaskDriver(self, browser='firefox', serverUrl='http://127.0.0.1:4444/wd/hub'):
+    def initMultitaskDriver(self, browser='firefox', serverUrl='http://127.0.0.1:4444/wd/hub', wait_time=5):
         """
-        Run class initialization method for multitask, the default is proper
-        to drive the Firefox browser,. Of course, you can also
-        pass parameter for other browser, such as Chrome browser for the "Chrome",
-        the Internet Explorer browser for "internet explorer" or "ie".
+        远程跑
+        :param browser: 浏览器
+        :param serverUrl: 地址
+        :param wait_time: 等待时间
         """
         try:
-            if browser == "firefox":
+            if browser == "firefox" or browser == "Firefox":
                 self.driver = webdriver.Remote(command_executor=serverUrl,
                                                desired_capabilities=DesiredCapabilities.FIREFOX)
-            elif browser == "chrome":
+            elif browser == "chrome" or browser == "Chrome":
                 self.driver = webdriver.Remote(command_executor=serverUrl,
                                                desired_capabilities=DesiredCapabilities.CHROME)
 
-            elif browser == "ie":
+            elif browser == "ie" or browser == "IE":
                 self.driver = webdriver.Remote(command_executor=serverUrl,
                                                desired_capabilities=DesiredCapabilities.INTERNETEXPLORER)
-            self.driver.implicitly_wait(5)
+            self.driver.implicitly_wait(wait_time)
         except Exception:
             self.logger.error("Not found this browser,You can enter 'firefox', 'chrome', 'ie'.")
             assert False
 
     def get(self, url):
         """
-        Open url,same as get.
+        打开某网址
 
-        Usage:
+        举例:打开网址百度
         driver.get("https://www.baidu.com")
         """
         self.driver.get(url)
 
     def max_window(self):
         """
-        Set browser window maximized.
+        将当前页面最大化.
 
-        Usage:
+        举例:将当前页面最大化
         driver.max_window()
         """
         self.driver.maximize_window()
 
     def set_window_size(self, wide, high):
         """
-        Set browser window wide and high.
+        设置浏览器的大小.
 
-        Usage:
-        driver.set_window_size(wide,high)
+        举例:设置浏览器的大小为宽1000,高1000
+        driver.set_window_size(1000,1000)
         """
         self.driver.set_window_size(wide, high)
 
     def wait(self, secsonds):
         """
-        Implicitly wait.All elements on the page.
+        设置显示等待时间.
 
-        Usage:
+        举例:等待10s
         driver.wait(10)
         """
         self.driver.implicitly_wait(secsonds)
 
     def find_element(self, element):
         """
-        Judge element positioning way, and returns the element.
+        选择定位方式并且定位元素，利用"="号连接
 
-        Usage:
+        举例:
         driver.find_element("id=kw")
         """
         if "=" not in element:
@@ -127,6 +127,10 @@ class BlueRose(object):
             assert False
         else:
             try:
+                """
+                    根据输入获取元素类型和对应路径
+                    类型："id"，"name"，"class"，"text"，"xpath"，"css"
+                """
                 by = element[0: element.find("=")]
                 value = element[element.find("=") + 1: len(element)]
 
@@ -216,8 +220,8 @@ class BlueRose(object):
 
     def send_keys(self, element, text):
         """
-        Operation input content after clear.
-        Usage:
+        定位元素并输入文本.
+        举例:定位id为kw的文本框，输入selenium
         driver.send_keys("id=kw","selenium")
         """
         element = self.find_element(element)
@@ -226,16 +230,16 @@ class BlueRose(object):
 
     def send_keyBoardsEvent(self, element, keyEvent):
         """
-        Operation send key board event on target.
+        键盘事件操作.
 
-        Usage:
+        举例:定位id为kw，按回车
         driver.send_keyBoardsEvent("id=kw","Keys.ENTER")
         """
         self.find_element(element).send_keys(keyEvent)
 
     def send_keys_index(self, element, index, text):
         """
-        Operation input content after clear.
+        先清除然后再输入。
 
         Usage:
         driver.send_keys_index("id=kw",5,"selenium")
@@ -368,9 +372,9 @@ class BlueRose(object):
 
     def get_screenshot(self):
         """
-        Get the current window screenshot.
+        截图.
 
-        Usage:
+        举例:获取当前页面的截图
         driver.get_screenshot()
         """
         current_time = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
@@ -387,18 +391,18 @@ class BlueRose(object):
 
     def submit(self, element):
         """
-        Submit the specified form.
+        表达提交.
 
-        Usage:
+        举例:
         driver.submit("id=mainFrame")
         """
         self.find_element(element).submit()
 
     def switch_to_frame(self, element):
         """
-        Switch to the specified frame.
+        切换frame.
 
-        Usage:
+        举例:
         driver.switch_to_frame("id=mainFrame")
         """
         self.driver.switch_to.frame(self.find_element(element))
