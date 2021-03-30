@@ -1,4 +1,4 @@
-
+# encoding:utf-8
 import random
 
 
@@ -37,6 +37,7 @@ def random_name():
         if random.choice(range(2)) > 0:
             name_1 = name[random.choice(range(len(name)))]
         return firstName_name + name_1 + boy_name
+
 
 if __name__ == '__main__':
     print(random_name())

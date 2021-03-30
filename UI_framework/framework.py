@@ -57,12 +57,6 @@ class BlueRose(object):
             assert False
 
     def initMultitaskDriver(self, browser='firefox', serverUrl='http://127.0.0.1:4444/wd/hub', wait_time=5):
-        """
-        远程跑
-        :param browser: 浏览器
-        :param serverUrl: 地址
-        :param wait_time: 等待时间
-        """
         try:
             if browser == "firefox" or browser == "Firefox":
                 self.driver = webdriver.Remote(command_executor=serverUrl,
@@ -169,9 +163,9 @@ class BlueRose(object):
 
     def find_elements(self, element, index):
         """
-        Judge element positioning way and index, and returns the element.
+        判断元素定位方式和索引，返回元素。
 
-        Usage:
+        举例:找到id为kw的元素的第一个，并返回
         driver.find_element("id=kw",1)
         """
         if "=" not in element:
@@ -241,7 +235,7 @@ class BlueRose(object):
         """
         先清除然后再输入。
 
-        Usage:
+        举例:清除后输入selenium
         driver.send_keys_index("id=kw",5,"selenium")
         """
         element = self.find_elements(element, index)
@@ -250,55 +244,54 @@ class BlueRose(object):
 
     def click(self, element):
         """
-        It can click any text / image can be clicked
-        Connection, check box, radio buttons, and even drop-down box etc..
+        定位元素并点击
 
-        Usage:
+        举例:定位id为kw的元素并点击
         driver.click("id=kw")
         """
         self.find_element(element).click()
 
     def click_index(self, element, index):
         """
-        It can click any text / image can be clicked
+        找到第几个元素并点击
 
-        Usage:
+        举例:点击第5个id为kw的元素
         driver.click_index("id=kw",5)
         """
         self.find_elements(element, index).click()
 
     def right_click(self, element):
         """
-        Right click element.
+        找到元素点击鼠标右键
 
-        Usage:
+        举例:
         driver.right_click("class=right")
         """
         ActionChains(self.driver).context_click(self.find_element(element)).perform()
 
     def move_to_element(self, element):
         """
-        Mouse over the element.
+        将鼠标移动到元素上
 
-        Usage:
+        举例:将鼠标移动到css为choose的元素上
         driver.move_to_element("css=choose")
         """
         ActionChains(self.driver).move_to_element(self.find_element(element)).perform()
 
     def double_click(self, element):
         """
-        Double click element.
+        找到元素双击.
 
-        Usage:
+        举例:双击name是baidu的元素
         driver.double_click("name=baidu")
         """
         ActionChains(self.driver).double_click(self.find_element(element)).perform()
 
     def drag_and_drop(self, source_element, target_element):
         """
-        Drags an element a certain distance and then drops it.
+        将元素拖到目标地址.
 
-        Usage:
+        举例:将id为s的元素拖拽到id为t的元素上
         driver.drag_and_drop("id=s","id=t")
         """
         ActionChains(self.driver).drag_and_drop(self.find_element(source_element),
@@ -306,63 +299,63 @@ class BlueRose(object):
 
     def back(self):
         """
-        Back to old window.
+        返回上一页，相当于浏览器最上部的左箭头.
 
-        Usage:
+        举例:返回上一页
         driver.back()
         """
         self.driver.back()
 
     def forward(self):
         """
-        Forward to old window.
+        前进到下一页，相当于浏览器最上部的右箭头.
 
-        Usage:
+        举例:前进到下一页
         driver.forward()
         """
         self.driver.forward()
 
     def get_attribute(self, element, attribute):
         """
-        Gets the value of an element attribute.
+        得到元素属性的值。
 
-        Usage:
+        举例:获取id为kw元素的属性值
         driver.get_attribute("id=kw","attribute")
         """
         return self.find_element(element).get_attribute(attribute)
 
     def get_text(self, element):
         """
-        Get element text information.
+        得到元素的文本内容.
 
-        Usage:
+        举例:
         driver.get_text("name=johnny")
         """
         return self.find_element(element).text
 
     def get_display(self, element):
         """
-        Gets the element to display,The return result is true or false.
+        判断要获取显示的元素是否可现实，返回结果为true或false。
 
-        Usage:
+        举例:判断id为app的元素是否可现实
         driver.get_display("id=ppp")
         """
         return self.find_element(element).is_displayed()
 
     def get_title(self):
         """
-        Get window title.
+        获得网页标题.
 
-        Usage:
+        举例:
         driver.get_title()
         """
         return self.driver.title
 
     def get_url(self):
         """
-        Get the URL address of the current page.
+        获取当前页的URL地址。
 
-        Usage:
+        举例:
         driver.get_url()
         """
         return self.driver.current_url
@@ -372,7 +365,7 @@ class BlueRose(object):
 
     def get_screenshot(self):
         """
-        截图.
+        截图，并保存
 
         举例:获取当前页面的截图
         driver.get_screenshot()
@@ -402,36 +395,34 @@ class BlueRose(object):
         """
         切换frame.
 
-        举例:
+        举例:切换到id为mainFrame的frame中
         driver.switch_to_frame("id=mainFrame")
         """
         self.driver.switch_to.frame(self.find_element(element))
 
     def switch_to_frame_out(self):
         """
-        Returns the current form machine form at the next higher level.
-        Corresponding relationship with switch_to_frame () method.
+        这是switch_to中独有的方法，可以切换到上一层的frame，对于层层嵌套的frame很有用。
 
-        Usage:
+        举例:
         driver.switch_to_frame_out()
         """
         self.driver.switch_to.parent_frame()
 
     def switch_to_default(self):
         """
-        Returns the current form machine form at the next higher level.
-        Corresponding relationship with switch_to_frame () method.
+        切换到最上层页面。
 
-        Usage:
+        举例:
         driver.switch_to_default()
         """
         self.driver.switch_to.default_content()
 
     def open_new_window(self):
         """
-        Open the new window and switch the handle to the newly opened window.
+        打开新窗口并切换到新打开的窗口。
 
-        Usage:
+        举例:
         driver.open_new_window()
         """
         current_windows = self.driver.current_window_handle
@@ -441,55 +432,54 @@ class BlueRose(object):
                 self.driver.switch_to.window(handle)
 
     def F5(self):
-        '''
-        Refresh the current page.
+        """
+        刷新当前页面
 
-        Usage:
+        举例:
         driver.F5()
-        '''
+        """
         self.driver.refresh()
 
     def js(self, script):
         """
-        Execute JavaScript scripts.
+        执行JavaScript脚本。
 
-        Usage:
+        举例:执行js滚动到指定坐标
         driver.js("window.scrollTo(200,1000);")
         """
         self.driver.execute_script(script)
 
     def accept_alert(self):
         """
-        Accept warning box.
+        点击警告框。
 
-        Usage:
+        举例:
         driver.accept_alert()
         """
         self.driver.switch_to.alert.accept()
 
     def dismiss_alert(self):
         """
-        Dismisses the alert available.
+        解除可用警报。
 
-        Usage:
+        举例:
         driver.dismiss_alert()
         """
         self.driver.switch_to.alert.dismiss()
 
     def close(self):
         """
-        Close the windows.
-
-        Usage:
+        关闭当前页面
+        举例:
         driver.close()
         """
         self.driver.close()
 
     def quit(self):
         """
-        Quit the driver and close all the windows.
+        关闭所有页面
 
-        Usage:
+        举例:
         driver.quit()
         """
         self.driver.delete_all_cookies()
