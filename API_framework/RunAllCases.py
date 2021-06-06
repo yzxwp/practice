@@ -27,11 +27,11 @@ if __name__ == "__main__":
     else:
         os.makedirs(report_path)
     runner = TestRunner(RunAllCases.load_running_case(),
-                        title='学生管理系统测试报告',
+                        title='融资租赁测试报告',
                         tester='gqf',
                         filename="Student_AutoTest_Report.html",
                         report_dir= report_path,
-                        desc="学生管理系统自动化测试", )
+                        desc="融资租赁测试报告自动化测试", )
 
     runner.run()
     runner.send_email(host="smtp.163.com",
